@@ -1,0 +1,57 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3001:3000"
+    networks:
+      - crypto-network
+
+  go-service:
+    build:
+      context: ./services/go-service
+    ports:
+      - "5001:5000"
+    environment:
+      - MONGO_URI=mongodb://admin:root@mongodb:27017/crypto-app?authSource=admin
+    networks:
+      - crypto-network
+
+  node-service:
+    build:
+      context: ./services/node-service
+    ports:
+      - "5002:5002"
+    environment:
+      - MONGO_URI=mongodb://admin:root@mongodb:27017/crypto-app?authSource=admin
+    networks:
+      - crypto-network
+
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+    networks:
+      - crypto-network
+    restart: always
+    command: ["mongod", "--bind_ip_all"]
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    networks:
+      - crypto-network
+    depends_on:
+      - frontend
+      - go-service
+      - node-service
+
+networks:
+  crypto-network:
