@@ -1,7 +1,7 @@
 
 # Crypto Portfolio Management
 
-Công Uẩn AI Crypto Portfolio Management là một ứng dụng web giúp người dùng quản lý danh mục đầu tư tiền điện tử, với cấu trúc microservices linh hoạt kết hợp giữa Go và Node.js, cùng với frontend React và MongoDB. Dự án được triển khai và quản lý dễ dàng với Docker và Nginx làm reverse proxy.
+Crypto Portfolio Management là một ứng dụng web giúp người dùng quản lý danh mục đầu tư tiền điện tử, với cấu trúc microservices linh hoạt kết hợp giữa Go và Node.js, cùng với frontend React và MongoDB. Dự án được triển khai và quản lý dễ dàng với Docker và Nginx làm reverse proxy.
 
 ## Mục lục
 1. [Tổng quan dự án](#tong-quan-du-an)
