@@ -113,10 +113,45 @@ crypto-portfolio-management/
    npm start
    ```
 
+
 ## Triển khai
 
-1. **Docker Compose**: Tạo các image Docker cho từng service và chạy tất cả trong Docker Compose.
-2. **Nginx Reverse Proxy**: Định tuyến các yêu cầu tới frontend và các dịch vụ backend.
+Dự án này được triển khai bằng Docker và Nginx để chạy các dịch vụ backend, frontend và cấu hình Nginx làm reverse proxy.
+
+### 1. Docker Compose
+
+Tạo các image Docker cho từng service và chạy tất cả trong Docker Compose bằng lệnh sau:
+
+```bash
+docker-compose up -d --build
+```
+
+Lệnh này sẽ xây dựng (nếu chưa có) và khởi động các container cho backend, frontend, và database theo cấu hình có sẵn trong file `docker-compose.yml`.
+
+### 2. Nginx Reverse Proxy
+
+Nginx được sử dụng để định tuyến các yêu cầu từ người dùng đến frontend và các dịch vụ backend.
+
+1. **Khởi động Nginx** (nếu chưa chạy):
+
+   ```bash
+   sudo systemctl start nginx
+   ```
+
+2. **Kiểm tra cấu hình Nginx** để đảm bảo không có lỗi:
+
+   ```bash
+   sudo nginx -t
+   ```
+
+3. **Khởi động lại Nginx** để áp dụng cấu hình mới:
+
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+Sau khi hoàn tất các bước trên, dự án sẽ có thể truy cập tại tên miền của bạn hoặc IP của server đã cấu hình.
+
 
 ---
 
